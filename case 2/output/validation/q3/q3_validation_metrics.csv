@@ -1,0 +1,5 @@
+check,passed,details
+Premium leg PV is positive,True,premium_leg_pv=0.068550054470 (should be > 0).
+Protection leg PV is positive,True,protection_leg_pv=0.068550054470 (should be > 0).
+NPV is within tolerance (|NPV| ≤ tol),True,"|NPV|=2.057e-14, tol=1.0e-06."
+NPV equals premium - protection (definition check),True,(premium-protection) - npv = 0.000e+00 (should be ~0).

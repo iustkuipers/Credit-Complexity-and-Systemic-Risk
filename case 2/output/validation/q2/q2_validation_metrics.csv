@@ -1,0 +1,9 @@
+check,passed,details
+"Bounds [0,1] for survival on quarterly grid",True,"All survival probabilities on quarterly grid must lie in [0,1]."
+Survival monotone decreasing on quarterly grid,True,Survival must be non-increasing over time.
+Cumulative default monotone increasing on quarterly grid,True,Cumulative default must be non-decreasing over time.
+Forward hazards non-negative,True,All stripped forward hazards must be >= 0.
+Forward hazards not absurdly large,True,Max forward hazard is 0.0351244. Threshold set at 5.0 (very generous).
+Par condition: |NPV| small at all tenors (recomputed),True,Max |NPV| across tenors is 7.647e-14 (threshold 1e-8).
+Premium and protection PVs positive at all tenors,True,Both premium_leg_pv and protection_leg_pv should be positive for all tenors.
+Forward PD mass sums to final cumulative PD (tenor boundaries),True,sum(fwd_pd)=0.270972199782 vs final cum PD=0.270972199782.

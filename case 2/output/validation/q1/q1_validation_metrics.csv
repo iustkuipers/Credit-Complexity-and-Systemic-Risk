@@ -1,0 +1,12 @@
+check,passed,details
+"Bounds [0,1] for survival_T",True,"All values of survival_T should lie in [0,1] (within tol=1e-10)."
+"Bounds [0,1] for cum_default_prob",True,"All values of cum_default_prob should lie in [0,1] (within tol=1e-10)."
+"Bounds [0,1] for fwd_default_prob",True,"All values of fwd_default_prob should lie in [0,1] (within tol=1e-10)."
+Survival monotone decreasing,True,Survival probabilities should be non-increasing with maturity.
+Cumulative default monotone increasing,True,Cumulative default probabilities should be non-decreasing with maturity.
+Non-negativity for avg_hazard,True,avg_hazard should be non-negative (within tol=1e-10).
+Non-negativity for fwd_hazard,True,fwd_hazard should be non-negative (within tol=1e-10).
+Non-negativity for fwd_default_prob,True,fwd_default_prob should be non-negative (within tol=1e-10).
+Forward PDs sum to final cumulative PD,True,sum(fwd_default_prob)=0.268384371053 vs final cum_default_prob=0.268384371053 (should match within tolerance ~1e-8).
+Average hazard matches R/LGD,True,Max abs error between avg_hazard and cds_spread/LGD is 9.714e-17.
+Survival matches exp(-avg_hazard*T),True,Max abs error between survival_T and exp(-avg_hazard*T) is 4.441e-16.

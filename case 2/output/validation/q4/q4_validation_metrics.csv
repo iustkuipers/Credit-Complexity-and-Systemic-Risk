@@ -1,0 +1,4 @@
+check,passed,details
+Q1 Simple model invariant to interest rate,True,"Max |Δ avg hazard (Q1)| = 0.000e+00, tol = 1.0e-12"
+Q2 Exact model sensitive to interest rate,True,Max |Δ avg hazard (Q2)| = 4.606e-04 (should be > tol)
+Simple–Exact hazard gap widens at high rates,True,"Mean widening = 1.940e-04, Max widening = 4.606e-04"
