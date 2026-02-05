@@ -2,21 +2,21 @@
 Question 1: Concentrated Portfolio Analysis
 Credit Complexity and Systemic Risk - Case 1
 """
-
-import sys
 import numpy as np
 import pandas as pd
 from pathlib import Path
 
-# Add paths for imports
-sys.path.insert(0, str(Path(__file__).parent / "data"))
-sys.path.insert(0, str(Path(__file__).parent / "services"))
-
+# Import from data package
 from data import make_portfolio, portfolio_value_t0
-from model import precompute_thresholds
-from simulation import simulate_portfolio_values_t1
-from risk_metrics import values_to_losses, var, es, summarize_case_metrics
-from validation import (
+
+# Import everything you need from services package
+from services import (
+    precompute_thresholds,
+    simulate_portfolio_values_t1,
+    values_to_losses,
+    var,
+    es,
+    summarize_case_metrics,
     bbb_default_threshold_analytic,
     assert_bbb_default_threshold_consistency,
     convergence_check_var995,

@@ -10,9 +10,20 @@ from data import (
     START_RATING_TO_ROW,
     make_portfolio,
 )
-from model import precompute_thresholds
-from simulation import simulate_portfolio_values_t1
-from risk_metrics import values_to_losses, var
+
+# Support importing validation either as part of the `services` package
+# (relative imports) or as a standalone module (absolute imports used in tests).
+try:
+    from .model import precompute_thresholds
+    from .simulation import simulate_portfolio_values_t1
+    from .risk_metrics import values_to_losses, var
+except ImportError:
+    from model import precompute_thresholds
+    from simulation import simulate_portfolio_values_t1
+    from risk_metrics import values_to_losses, var
+    from model import precompute_thresholds
+    from simulation import simulate_portfolio_values_t1
+    from risk_metrics import values_to_losses, var
 
 
 # =============================================================================
@@ -31,6 +42,7 @@ def bbb_default_threshold_analytic() -> float:
     row = START_RATING_TO_ROW["BBB"]
     p_default = TRANSITION[row, -1]  # last column is 'D'
     return float(norm.ppf(p_default))
+
 
 
 def assert_bbb_default_threshold_consistency(
@@ -56,7 +68,7 @@ def assert_bbb_default_threshold_consistency(
             f" simulated z = {z_sim:.10f}\n"
             f" tolerance   = {tol}"
         )
-
+    
 
 # =============================================================================
 # 2) Monte Carlo convergence check (explicitly required by Case 1)

@@ -4,17 +4,38 @@ from __future__ import annotations
 import numpy as np
 from scipy.stats import norm
 
-from data import (
-    RATINGS,
-    RATING_TO_IDX,
-    START_RATINGS,
-    START_RATING_TO_ROW,
-    TRANSITION,
-)
+# Support importing model in three contexts:
+# 1. As part of the `services` package: from services.model import ...
+# 2. As a standalone module in tests: sys.path includes 'services/', then from model import ...
+# 3. Via main.py which uses package imports
+try:
+    from .data import (
+        RATINGS,
+        RATING_TO_IDX,
+        START_RATINGS,
+        START_RATING_TO_ROW,
+        TRANSITION,
+    )
+except ImportError:
+    try:
+        from services.data import (
+            RATINGS,
+            RATING_TO_IDX,
+            START_RATINGS,
+            START_RATING_TO_ROW,
+            TRANSITION,
+        )
+    except ImportError:
+        from data import (
+            RATINGS,
+            RATING_TO_IDX,
+            START_RATINGS,
+            START_RATING_TO_ROW,
+            TRANSITION,
+        )
 
 # Numerical safety to avoid norm.ppf(0)=-inf and norm.ppf(1)=+inf everywhere
 _EPS = 1e-12
-
 
 def precompute_thresholds(transition: np.ndarray = TRANSITION) -> np.ndarray:
     """
@@ -97,7 +118,6 @@ def migrate_many_to_indices(current_rating: str, x_vec: np.ndarray, thresholds: 
     thr = thresholds[row]
     k = np.searchsorted(thr, x_vec, side="right")
     return np.minimum(k, len(RATINGS) - 1).astype(int)
-
 
 def _row_index(current_rating: str) -> int:
     if current_rating not in START_RATINGS:
